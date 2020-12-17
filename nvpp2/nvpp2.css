@@ -1,0 +1,77 @@
+
+#nvpp2form{
+    display: none;
+    flex-direction: column;   
+    align-items: center;
+    justify-content: right;
+    margin-top: 3px;
+    background-color: white;
+    border: 2px solid blue;
+    border-radius: 8px;
+    width: 50%;
+    /*height: 63%;*/
+    height: 63%;
+    padding: 1% 7%;   
+}
+
+#pp2prevnxt{
+  display: flex ;
+  flex-direction: row;
+  width: max-content;
+}
+#nvpp2btnnxt, #nvpp2btnprv{
+    background-color: aliceblue;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+     color: white;
+     font-size: 1.4rem;
+     border: 2px solid black;
+     border-radius: 10px;
+     width: 160px;
+     height: 50px;
+     margin: 15px;
+     margin-top: 30px;
+
+   }
+   #nvpp2btnnxt:hover, #nvpp2btnprv:hover{
+     color: red;
+     cursor: pointer;
+   }
+   #untitle{
+    margin-top: 25px; 
+   }
+
+#unt{
+  background-color: rgb(202, 201, 201);
+  color: grey;
+  border: 2px solid black;
+  outline: none;
+  pointer-events: none;
+  cursor: default;
+}
+
+#pp2chkboxes{
+display: flex;
+flex-direction: row;
+background-color: rgba(255, 255, 255, 0.589);
+width: 90%;
+height: 27px;
+border: 2px solid red;
+font-size: 1.3rem;
+border-radius: 8px;
+text-align: left;
+margin-bottom: 4%;
+
+/*width: 100%;
+height: 20%l;
+border: 2px solid red;
+border-radius: 10px;
+padding: 3px; */
+}
+
+#pp2chk1, #pp2chk2{
+height: 15px;
+width: 15px;
+margin-left: 80px;
+}

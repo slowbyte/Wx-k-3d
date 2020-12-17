@@ -1,0 +1,17 @@
+
+
+  ****** PP1LastColumns and the data fields used in PP1LastDBdata
+  [firstname, lastname, city, state, zipcode, emailorig]
+ ====================================================
+
+ ****** PP2LastColumns and the data fields used in PP2LastDBdata
+ [password, phonenumber, dmplayer, birthyear]
+ ====================================================
+
+ ****** PP3LastColumns and the data fields used in PP3LastDBdata
+ [gametype, gamestyle, groupsize, availability] 
+ ====================================================
+
+ ****** these are never editable by the member...
+ [userID, email, usernameorig, username, lastlogin, logincount, membersince, usernamelc, userIndx] 
+ ============================================================================

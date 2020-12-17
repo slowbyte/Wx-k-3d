@@ -1,0 +1,25 @@
+
+
+.admin-Scookies{
+    display: none;  
+    flex-direction: column;
+    background-color:lightcyan;
+    align-items: center;
+    margin-left: 10%;
+    text-align: justify;
+   margin-top: 25px;
+   padding: 2%;
+   padding-top: 3px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.1rem;
+    width: 350px;
+    height: 450px;
+    border: 1px solid grey;
+    border-radius: 8px;
+    box-shadow: 1px 7px 10px 3px rgb(179, 179, 179);
+    grid-area: md;
+    z-index:1 ;
+  }
+  #at3{
+    margin-top: 50px;
+  }

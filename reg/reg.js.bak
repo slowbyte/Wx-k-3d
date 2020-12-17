@@ -1,0 +1,336 @@
+
+var titles = ["First Name", " Last Name", " Username", " Password", " Email" ];  
+var columns = ['firstname', 'lastname', 'username', 'password', 'email'];
+var addusercolumns =  "(firstname, lastname, username, password, email, emailorig, usernameorig)";
+var colnkeys = ['rfn', 'rln', 'run', 'rup', 'rem'];
+//------------------------------------------------------------------------------------
+var dbAddress = "localhost";
+var dbUser = "root";
+var dbPwd = "slowbyte1";
+var loggedUser = "slowbyte";
+var dbName = "cf1";
+var funcName = "";
+var $yourVariable = "";
+
+//================= BEGIN regChk4AllEntries() ================================= 
+function regChk4AllEntries()
+{
+// alert("chkallentries now");
+var titles = ['ignore', 'First Name',  ' Last Name', ' Username', ' Password', ' Email']  ;
+var columns = ['ignore', 'firstname', 'lastname', 'username', 'password', 'email'];
+var line = [];
+line[0] = "unused-ignore";
+line[1] = document.getElementById('rfn').value.trim();
+line[2] = document.getElementById('rln').value.trim();
+line[3] = document.getElementById('run').value.trim();
+line[4] = document.getElementById('rup').value.trim();
+line[5] = document.getElementById('rem').value.trim().toLowerCase();
+line[6] = document.getElementById('rem').value.trim(); //email Orig as entered
+line[7] =document.getElementById('run').value.trim(); //username Orig as entered
+//now chk if any lines are = "" (not filled in);
+//and save which entries are missing if any...
+var errors = false;
+var errorList = [];
+for (var i = 1; i < line.length; i++) 
+{
+  //alert(line[i]);
+  if (line[i] == "")
+  {
+    errors = true;
+    errorList.push(titles[i]);
+    //alert(titles[i] + ".." + errorList);
+  }
+}
+if (errors) 
+{
+  //alert(errorList);
+  document.getElementById('modal-content').style.border = "4px solid red";     
+  var data = [];
+   data[0] = "ERROR: please correct...";
+   data[1] =  "All items are required for Registration!<br>The following item(s) need to be filled in ... ";
+   data[2] =  errorList;
+   data[3] =   "";
+  displayModal( data);   
+  return;  
+}
+ else 
+ {
+  //close any error msg displayed
+  objModal.style.display = "none";
+  regChkUsernameTaken(line);
+    
+ }
+}
+//================= END regChk4AllEntries() =========================================
+
+//================= BEGIN regChkUsernameTaken() ===================================
+function regChkUsernameTaken(entries)
+{
+  var $dbValues = [];
+  //alert("chkUsername = " + entries[7]);
+  //var emailOrig = entries[5];
+  var usernameOrig = entries[3];
+  //var emaillcase = emailOrig.toLowerCase(); 
+  var usernamelcase = usernameOrig.toLowerCase();
+  //alert(emailOrig + "/" + emaillcase);
+  //alert(usernameOrig + "/" + usernamelcase);
+ 
+  whoCallAjax = "ajaxtest";
+  var dbHost = "localhost";
+  //var dbHost = "74.207.235.136";
+  var dbUser = "root";
+  var dbPwd = "slowbyte1";
+  var chk4usertaken =  usernamelcase;
+  var dbName = "cf1";
+  var funcName = "testNVrtnpp1row";  
+  var dBtable = "tblProfilePg1";
+  var whichSQL = "username";  //email or "username is OK "
+  var email = "none";
+  objnvModal.style.display = "none";
+    //===============new procedure below for getting back an Ajax* retn value=======================
+  //FINALLY WORKS 8/21/2020 AND IT WORKS EXCELLENTLY.... FML
+
+  var retned = null;
+  var datax = "";
+  $dbValues = [dbHost, dbUser, dbPwd,  chk4usertaken, dbName, funcName, dBtable, whichSQL, email] ; 
+  //alert($dbValues);
+  retned = ajaxtest($dbValues);
+  
+  timeout = 1000;  /////THIS NEEDS TO HAVE THE FOR LOOP FIX TO ACCOUNT WHETHER ITS A username OR email TYPE BEING REQUESTED
+  var sizeOfExpectedRetn = 16; //FOR USER NAME ITS A 15
+        
+  setTimeout(function()
+    {       
+      for(var j = 0; j < sizeOfExpectedRetn;  j++)
+      {         
+            //datax = datax + ", " + retned[j];      
+            datax = datax + "\r\n " + retned[j];    
+      }
+
+      if(loopRan == false)   
+      {            
+          loopRan = true;   
+          timeout = 2000;  
+          //alert(" regChkUsernameTaken(entries) called 2nd time")   ;
+          regChkUsernameTaken(entries);
+      }
+      else
+      {        
+          //alert(datax);
+          loopRan = false;
+          if(retned[6] == null)
+          {
+            //alert("username  " + usernameOrig + " IS available");
+            entries[3] = usernamelcase;
+            entries[7] = usernameOrig;
+            //alert(entries);
+            //regChkEmailTaken(entries); 
+            regAddNewUser(entries)           
+          }
+          else if(retned[6] == chk4usertaken)
+          {
+            //alert("username  " + usernameOrig + " IS NOT available");
+            document.getElementById('modal-content').style.border = "4px solid red";    
+            document.getElementById('s1').style.color = "red";  
+            var data = [];
+            data[0] = "ERROR: please correct...";
+            data[1] =  "USERNAME TAKEN: <br><br>"+ "username... " + document.getElementById('run').value.trim()  + "  ...is already taken... ";
+            data[2] =  "";
+            data[3] =   "";
+           displayModal( data);     
+          }
+      }       
+    }, timeout);
+}
+//================= END regChkUsernameTaken() ===================================
+
+//================= BEGIN regChkEmailTaken() ===================================
+function regChkEmailTaken(entriesdata)  
+{
+  var $dbValues = [];
+  //alert("regChkEmail = " + entriesdata);
+  var emailOrig = entriesdata[6]; /////////////////////////////////////////just changed index from 5 to 6 9/20/2020 works correct now...
+  //var usernameOrig = entries[3];
+  var emaillcase = emailOrig.toLowerCase(); 
+  //var usernamelcase = usernameOrig.toLowerCase();
+  //alert(emailOrig + "/" + emaillcase);
+  //alert(usernameOrig + "/" + usernamelcase);
+ 
+  whoCallAjax = "ajaxtest";
+  var dbHost = "localhost";
+  //var dbHost = "74.207.235.136";
+  var dbUser = "root";
+  var dbPwd = "slowbyte1";
+  var chk4emailtaken =  emaillcase;
+  var dbName = "cf1";
+  var funcName = "testNVrtnpp1row";  
+  var dBtable = "tblProfilePg1";
+  var whichSQL = "email";  //email or "username is OK "
+  var email = "email";
+  objnvModal.style.display = "none";
+    //===============new procedure below for getting back an Ajax* retn value=======================
+  //FINALLY WORKS 8/21/2020 AND IT WORKS EXCELLENTLY.... FML
+
+  var retned = null;
+  var datax = "";
+  $dbValues = [dbHost, dbUser, dbPwd,  chk4emailtaken, dbName, funcName, dBtable, whichSQL, email] ; 
+ //alert("dbvalues = " + $dbValues);
+  retned = ajaxtest($dbValues);
+  
+  timeout = 1000;  /////THIS NEEDS TO HAVE THE FOR LOOP FIX TO ACCOUNT WHETHER ITS A username OR email TYPE BEING REQUESTED
+  var sizeOfExpectedRetn = 16; //FOR USER NAME ITS A 15
+        
+ // alert("1- at setTimeout..." + sizeOfExpectedRetn );
+  //alert(retned[4]);
+  setTimeout(function()
+    {       
+      for(var j = 0; j < sizeOfExpectedRetn;  j++)
+      {         
+            //datax = datax + ", " + retned[j];      
+            datax = datax + "\r\n " + retned[j];    
+      }
+
+      if(loopRan == false)   
+      {            
+          loopRan = true;   
+          timeout = 2000;  
+          //alert(" regChkUsernameTaken(emaildata) called 2nd time")             
+          regChkEmailTaken(entriesdata);
+      }
+      else
+      {        
+          //alert(datax);
+          loopRan = false;
+          if(retned[5] == null)
+          {
+            //alert("email  " + emailOrig + " IS available");
+            entriesdata[5] = emaillcase;
+            entriesdata[6] = emailOrig;
+            //alert(entriesdata)
+            regAddNewUser(entriesdata)
+          }
+          else if(retned[5] == chk4emailtaken)
+          {
+            //alert("emailRequested =  " + emailOrig + " IS NOT available");
+            document.getElementById('modal-content').style.border = "4px solid red";    
+            document.getElementById('s1').style.color = "red";  
+            var data = [];
+            data[0] = "ERROR: please correct...";
+            data[1] =  "EMAIL TAKEN: <br><br>"+ "email requested " + document.getElementById('rem').value.trim()  + " is already taken... ";
+            data[2] =  "";
+            data[3] =   "";
+           displayModal( data);     
+          }
+          //alert(retned[5] + " ... " + retned[11] + " ... " + retned[6] + " ... " + retned[12]);
+      }       
+    }, timeout);
+}
+//================= END regChkEmailTaken() ===================================
+
+
+//================ BEGIN FUNCTION regAddNewUser() ====================================
+function regAddNewUser(rowvalues)
+{
+alert("regAddNewUser");
+var dBAddData = "(" ;
+for(var i = 1; i < rowvalues.length; i++)
+{
+   dBAddData = dBAddData + "'" + rowvalues[i] + "', ";  
+}
+
+dBAddData = dBAddData.slice(0, dBAddData.length - 2);
+dBAddData = dBAddData + ")";
+
+  var username = document.getElementById('run').value.trim();
+  var dBtable = "tblProfilePg1";
+ // funcName = "regAddNewUser";
+  funcName = "addnewuser";
+  dbAddress = "localhost";
+  dbUser = "root";
+  dbPwd = "slowbyte1";
+  loggedUser = "slowbyte";
+  dbName = "cf1";
+  dbColumns = addusercolumns; //(firstname, lastname, username, password, email, emailorig, usernameorig)
+  dbValuesToInsert = dBAddData;
+ var $dbValues = [];
+  $dbValues = [dbAddress, dbUser, dbPwd, loggedUser, dbName, funcName, username, dbColumns, dbValuesToInsert, dBtable];  
+   // alert($dbValues) ;
+  // var $newData = $dbValues;
+
+ setTimeout(function()
+ {   
+    //alert("timer went off");  
+    $retn = ajaxReg($dbValues);
+    alert("$retn = " + $retn);
+    if($retn.includes("email_UNIQUE"))
+    {
+    document.getElementById('modal-content').style.border = "4px solid red"; 
+    document.getElementById('s1').style.color = "red";     
+    var data = [];
+       data[0] = "ERROR: please correct...";
+       data[1] =  "The EMAIL you entered is already used by another member...<br></br>";
+       data[2] =  " You entered email: " + document.getElementById('rem').value.trim() ;
+       data[3] =   "";      
+      displayModal( data);  //email already  used by someone else;     
+    }
+    else  if($retn.includes("success"))
+    {
+      
+      document.getElementById('modal-content').style.border = "4px solid green";    
+      document.getElementById('s1').style.color = "black"; 
+      var data = [];
+         data[0] = "SUCCESS:";
+         data[1] =  "you have successfully registered username...<br><br>" + $dbValues[6];;
+         data[2] =  "";
+         data[3] =   "";      
+        displayModal( data);  //successfully register as a new user 
+    }
+ },2500);
+ ajaxReg($newData); 
+}
+
+//================ END FUNCTION regAddNewUser() ====================================
+
+
+//============================BEGIN FUNCTION ajaxReg ===============================================
+function ajaxReg($dbValues)
+{
+  //alert("ajaxReg fcn =  " +  $dbValues[5]);
+  funcCalled = "NONE";
+
+  if($dbValues[5] == "addnewuser")
+  {
+    funcCalled = "addnewuser";
+  }
+     
+  if(funcCalled == "NONE")
+  {
+    alert("FUNCTION CALLED = NONE\r\nCancelling" );
+    return;
+  }
+   //alert("Ajax FUNCTION CALLED = " + funcCalled);
+   //alert("AJAX dbval = " + $dbValues);
+	jQuery.ajax({type: "POST", url: "signin/signin.php", dataType: 'json', data: {functionname: funcCalled, arguments: [$dbValues, 'blank'] },
+		success: function (obj, textstatus)
+				   {
+					  if( !('error' in obj) )
+					  {
+              $yourVariable = obj.result;
+              //alert(obj.result);
+               if(funcName == "updateDB")
+               {
+               alert(textstatus); //do this only when WRITTING TO DB NOT WHEN READING FROM DB
+               }
+					  }
+					  else
+					  {
+              alert(obj.error);
+              alert('fuck');
+						 // console.log(obj.error);
+					  }
+           }
+          });
+return $yourVariable;
+}
+//==================END FUNCTION ajaxREG() ===========================================
+

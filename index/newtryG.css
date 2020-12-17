@@ -1,0 +1,490 @@
+*{
+  box-sizing: border-box;
+}
+body, html {
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+   
+#grid{
+margin: 5%;
+margin-top: -100px;
+margin-left: 90px;
+display: grid;
+width: 90vw;
+font-size: 1.3rem;
+grid-template-columns:   400px   repeat( 9 , min-content) ;
+grid-template-rows: 200px 1px 25px 200px repeat( 8, 10%);
+
+grid-template-areas: 
+" tfr tmc1 tmc2 tmc3 tmc4 tmc5 tmc6 tl . ."
+" m m m m m m m m . . "
+" bfr bmc1 bmc2 bmc3 bmc4 bmc5 bmc6 bl . ."
+
+" login mymodal . md md md abtus abtus abtus . "
+" login mymodal . . pic pic abtus abtus abtus ."
+" login pic2 . . pic pic abtus abtus abtus ."
+" login pic2 . . pic pic abtus abtus abtus ."
+" login pic2 .  . . . abtus abtus abtus ."
+" . . . . nvmodal nvmodal . . . ."
+" . . . . . . . . . ."
+" . . . . . . . . . .";  
+}
+a{
+  display: flex;    
+  font-family: Arial;
+  font-size: 1.3rem; 
+  color:rgb(61, 60, 60); 
+  background-color: white;
+  text-decoration: none;  
+}
+a:hover {
+  color: rgba(255, 0, 0, 0.658); 
+}
+#logos{
+   display: flex;
+   flex-direction: row;
+   align-items: center; 
+   margin-left: 50px;  
+}
+#img1{
+  display:flex;
+  margin-top: 130px;
+  grid-area: tfr; 
+}
+#ver{
+  margin-top: 130px;
+}
+#s16{    
+  display:flex;
+  margin-top: 3px;
+  white-space: nowrap;
+  align-items: top;
+  justify-content: center;
+  flex-direction: row;
+  font-size: 90px;
+  margin-bottom:  0px;
+  grid-area: bfr;
+}
+.line1{
+ display: flex;
+  align-content: left;
+  border-top: 1px solid black;
+  width: 1570px;
+  height: 1px;
+  margin-top: 1px;
+  margin-left: 50px;
+  z-index: 1;
+  grid-area: m;
+}
+#s11, #s13, #s15{
+
+  background-color:white;   
+}
+#s12, #s14, #s16{
+  background-color: white;
+}
+#s11{ 
+  display:flex;
+  margin-top: 3px;  
+  white-space: nowrap;
+  align-items: top;
+  justify-content: center;
+  flex-direction: row;
+  margin-left: 35vw;
+  margin-bottom:  0px;   
+  grid-area: bmc1;  
+}
+#s13{ 
+  display:flex;
+  margin-top: 3px;  
+  padding-top: 3px;
+  padding-bottom: 0px;
+  white-space: nowrap;
+  align-items:top;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 0px; 
+  margin-bottom:  0px;   
+  grid-area: bmc3;
+}
+#s15{ 
+  display:flex;
+  margin-top: 3px;
+  white-space: nowrap;   
+  align-items: top;
+  justify-content: center; 
+  flex-direction: row;
+  margin-left: 0px; 
+  margin-bottom:  0px;   
+  grid-area: bmc5; 
+   }
+
+#s12{ 
+  display:flex;
+  margin-top: 0px;
+  white-space: nowrap;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: row;
+  margin-bottom:  0px;   
+  grid-area: tmc2; 
+}
+#s14{ 
+  display:flex;
+  margin-top: 0px;
+  white-space: nowrap;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: row;    
+  margin-bottom:  0px;   
+  grid-area: tmc4; 
+}
+#s16{ 
+  display:none;
+  margin-top: 0px;
+  white-space: nowrap;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: row;    
+  margin-bottom:  0px;   
+  grid-area: tmc6; 
+}
+
+#a11{
+  padding: 0;
+  pointer-events: none;
+  color: rgb(223, 219, 219)
+}
+#a12{
+  padding: 0;
+  pointer-events: none;
+  color: rgb(223, 219, 219)
+}
+#a13{
+  padding: 0;
+  pointer-events: none;
+  color: rgb(223, 219, 219)
+}
+#a14{
+  padding: 0;
+  pointer-events: none;
+  color: rgb(223, 219, 219); 
+}
+#a15{
+  padding: 0;
+  pointer-events: default;
+  color: blue
+}
+#a16{
+  padding: 0;
+  color: grey; 
+}
+
+#a11:hover, 
+#a13:hover,  
+#a15:hover{
+background-color: lightgrey;
+}
+
+ #a12:hover,
+ #a14:hover,
+ #a16:hover{
+ background-color:rgb(134, 187, 236);
+}
+/*===================================================*/
+
+
+  #content{
+    display: none;  
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 1.0);
+    align-items: center;
+    margin-left: 10%;
+    text-align: justify;
+   margin-top: 5px;
+   padding: 2%;
+   padding-top: 3px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.1rem;
+    width: 550px;
+    height: fit-content;
+    border: 1px solid grey;
+    border-radius: 8px;
+    box-shadow: 1px 7px 10px 3px rgb(179, 179, 179);
+    grid-area: mymodal;
+    z-index:1 ;
+  }
+  h4{
+    text-align: left;
+    margin: 0px;
+    color: rgba(0, 0, 255, 0.767);
+    margin-top:15px;;
+  }
+  .mtxt{
+    color: black;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 0px;
+    margin-top: 5px;
+   
+  }
+  #bntxtclose {
+    background-color:rgba(152, 194, 250) ;
+    border: 2px solid grey;
+    border-radius: 5px; 
+  }
+   #atxtclose{
+    background-color:rgba(152, 194, 250); 
+    color:black;
+  }
+  #atxtclose:hover{
+   color: white;
+  }
+  .divsub{
+    display: flex;
+    flex-direction: row;
+  }
+  .rdivsub{
+    display: flex;
+    flex-direction: row;
+  }
+  #butset, #btn99 {
+    color: black;
+    height: 40px;
+    width: 80px;
+    border: 2px solid red;
+    margin-top: 20px;
+    margin-right: 7px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #f44336;
+    transition-duration: 0.8s;
+  }
+    #btn99:hover {
+    background-color: #f44336;
+    color: white;
+    cursor: pointer;
+  }
+   #butget, #btn100 {
+    color: black;
+    height: 40px;
+    width: 80px;
+    border: 2px solid red;
+    margin-top: 20px;
+    margin-left: 7px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #f44336;
+    transition-duration: 0.8s;
+  }
+  #btn100 :hover {
+    background-color: #f44336;
+    color: white;
+    cursor: pointer;
+  }
+  #btn101{
+    color: black;
+    height: 40px;
+    width: 80px;
+    border: 2px solid red;
+    margin-top: 20px;
+    margin-left: 7px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #f44336;
+    transition-duration: 0.8s;
+  }
+  #btn101:hover{
+    background-color: #f44336;
+    color: white;
+    cursor: pointer;
+  }
+  #btn102{
+    color: black;
+    height: 40px;
+    width: 80px;
+    border: 2px solid red;
+    margin-top: 20px;
+    margin-left: 7px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #f44336;
+    transition-duration: 0.8s;
+  }
+  #btn102, #butget:hover, #butset:hover{
+    background-color: #f44336;
+    color: white;
+    cursor: pointer;
+  }
+  
+  #login{
+    display: none;
+    flex-direction: column; 
+    border: 3px solid blue;     
+    border-radius: 10px;
+    background-color: rgba(245, 245, 245, .6);
+    width: 226;  
+    height:  360px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 77px; 
+    margin-right:  77px;
+    margin-top: 7px;
+    grid-area: login  ; 
+   }
+  
+   h3{
+     margin: 15px;
+   }
+   #frmstatus{
+    display:none;
+    flex-direction: column;
+    align-items: center;
+    height: 360px;   
+    width: 98%;
+    margin: 2px;
+    }
+    #frmstatus{
+      display:none;
+      flex-direction: column;
+      background-color: aliceblue;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      align-items: center;
+      height: 360px;   
+      width: 98%;
+      margin: 2px;
+      }
+    #frmlog{
+      display: none ;
+      flex-direction: column;
+      background-color: blanchedalmond;
+      align-items: center;   
+      height: 360px;
+      width: 99%;
+      margin: 2px;
+    }
+    #butreg{
+      background-color: rgba(255, 0, 0, 0.678);
+      color: white;
+      widows: 150px;
+      height: 40px;
+      font-size: 1.0rem;
+      border: 2px solid white;
+      border-radius: 8px;
+      margin-top: 70px;
+      cursor: pointer;
+      transition-duration: 0.8s;
+   }
+   #butreg:hover{
+       background-color: white;
+      color: black;
+   }
+    #login2{
+      display: none;
+      flex-direction: column; 
+      border: 3px solid blue;       
+      border-radius: 10px;
+      background-color: rgba(245, 245, 245, .6);
+      margin-left: 77px;
+      margin-right: 77px;
+      margin-top: 7px;
+      width: 226;  
+      height:  420px;
+      grid-area: login  
+     }
+    #frmreg{
+      display: none ;
+      flex-direction: column;
+      background-color: rgb(254, 247, 234);
+      align-items: center;   
+      height: 420px;
+      width: 99%;
+      margin: 2px;
+    }
+    
+    input{
+      font-family: 'Times New Roman';
+    }
+  
+  #rfn{
+    margin-top: 10px;
+  }
+  
+  .inleft{
+    background-color: rgba(255, 255, 255, 0.589);
+    width: 90%;
+    height: 27px;
+    border: 2px solid red;
+    font-size: 1.3rem;
+    border-radius: 8px;
+    text-align: left;
+    margin-bottom: 4%;
+  }
+  .instatus{
+    background-color: rgba(255, 255, 255, 0.589);
+    width: 90%;
+    height: 30px;
+    border: 2px solid grey;
+    font-size: 1.4rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 4%;
+  }
+  
+    .inright{
+      background-color: rgba(255, 255, 255, 0.589);
+      width: 90%;
+      height: 30px;
+      border: 2px solid red;
+      font-size: 1.3rem;
+      border-radius: 8px;
+      text-align: left;
+      margin-bottom: 4%;
+    }
+    
+  .title{
+    font-size: 1.25rem;
+  }
+  #tunu{
+    margin-top: 0px;
+  }
+  #tun{
+    margin-top: 35px;
+  }
+   #stus{
+     margin-top: 9px;
+   }
+  #rtfn{
+    margin-top: 20px;
+  }
+  #bottom{
+    height: auto;
+  }
+  #bottom{
+    margin-bottom: 0px;
+  }
+  #img2{
+    display:none;
+    margin-top: 15px;
+  }
+  #pics{
+    display:block;
+    width: 99%;
+    height:99%;
+    margin-top: 250px;
+    margin-left: 45%;  
+    grid-area: mymodal; 
+  }
+
+  
+  

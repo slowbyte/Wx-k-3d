@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>GetSelectOptionData</title>
+
+    <link rel="stylesheet" href="dropdwn.css">
+</head>
+<body>
+    <!--
+    <form name="demoForm"></form>
+        <select name="demoSelect" onchange="showData()">
+            <option value="zilch">Select:</option>
+            <option value="A">Option 1</option>
+            <option value="B">Option 2</option>
+            <option value="C">Option 3</option>
+        </select>
+    </form>
+-->
+ <div id="grid2">
+    <form name="demoForm">      
+        <div class="custom-select">
+            <select name="demoSelect" onchange="showData()">
+                <option value="-1">select an item</option>
+                 <option value="1">first</option>
+                 <option value="2" >second</option>
+                 <option value="3">third</option>
+                 <option value="4">fourth</option>
+                 <option value="5">fifth</option>        
+             </select>
+             <span class="custom-arrow"></span>
+        </div>
+    </form>
+ </div>
+
+    <p id="firstP">&nbsp;</p>
+    <p id="secondP">&nbsp;</p>
+    <p id="thirdP">&nbsp;</p>
+
+    <script>
+    function showData() {
+        //var theSelect = demoForm.demoSelect;
+        var theSelect = demoForm.demoSelect;
+        var firstP = document.getElementById('firstP');
+        var secondP = document.getElementById('secondP');
+        var thirdP = document.getElementById('thirdP');
+        alert(('Its text is: ' + theSelect[theSelect.selectedIndex].text));
+        firstP.innerHTML = ('This option\'s index number is: ' + theSelect.selectedIndex + ' (Javascript index numbers start at 0)');
+        secondP.innerHTML = ('Its value is: ' + theSelect[theSelect.selectedIndex].value);
+        thirdP.innerHTML = ('Its text is: ' + theSelect[theSelect.selectedIndex].text);
+    }
+     </script>
+</body>
+</html>

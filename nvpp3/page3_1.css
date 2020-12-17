@@ -1,0 +1,160 @@
+/*&&&&&&&&&&&& BEGIN gridR21 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+/*body{
+width: 90%;
+margin-left: 5%;
+margin-right: 5%;
+}
+*/
+
+#gridR21{
+    display: grid;
+    margin-top: 0px;
+    width: 100%;
+    gap: 0px;
+    grid-template-columns: (12.5% 12.5%, 12.5%, 12.5% 12.5% 12.5% 12.5% 12.5% );
+    /*grid-template-rows: (200px 200px 200px 200px 200px 200px); */
+    grid-template-rows: (200px 200px 200px 200px 200px 200px 300px);
+    border: 2px solid black;
+    
+    grid-template-areas: 
+    " titleR21 titleR21 titleR21 titleR21 titleR21 titleR21 titleR21 titleR21"
+    "sumTemp day1 day2 day3 day4 day5 day6 day7"
+    "morning  d1 d2 d3 d4 d5 d6 d7"
+    "midday  d8 d9 d10 d11 d12 d13 d14"
+    "evening d15 d16 d17 d18 d19 d20 d21"
+    " . . . . . . . ."
+    " er er er er er er er er ";
+    
+    background-color:rgba(255, 248, 220, 7.0);
+}
+
+
+#sumTemp{
+    color: green;
+    grid-area: sumTemp;
+}
+
+#titleR21{
+    box-sizing: border-box;
+    background-color: darkblue;
+    color: white;
+    text-align: center;    
+    font-size: 25px;
+    grid-area: titleR21;
+    margin-top: 17px;
+    margin-bottom: 17px;
+    width: 100%
+}
+
+.days{
+    box-sizing: border-box;
+    border: 2px solid red;
+    margin-bottom: 10px;
+    margin-right: 4px;
+    width: 38px;
+    text-align: center;    
+    font-family: monospace;
+    font-size: 20px;
+    font-weight: bold;  
+    color: black;  
+}
+
+.when{
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    font-family: monospace;
+    border: 2px solid red;
+    width: 100px;
+    margin-left: 5px;
+    margin-bottom: 6px;
+    color: black;
+}
+
+#morning{margin-bottom: 25px; grid-area: morning;} #midday{margin-bottom: 25px; grid-area: midday;} #evening{margin-bottom: 25px; grid-area: evening;}
+
+#day1{grid-area: day1;} #day2{ grid-area: day2;} #day3{grid-area: day3;} #day4 {grid-area: day4;}
+#day5{grid-area: day5;} #day6{  grid-area: day6;} #day7{ grid-area: day7;}
+
+#d1{grid-area: d1;} #d2{ grid-area: d2;} #d3{grid-area: d3;} #d4 {grid-area: d4;}
+#d5{grid-area: d5;} #d6{  grid-area: d6;} #d7{grid-area: d7;}
+
+#d8{grid-area: d8;} #d9{ grid-area: d9;} #d10{grid-area: d10;} #d11 {grid-area: d11;}
+#d12{grid-area: d12;} #d13{  grid-area: d13;} #d14{grid-area: d14;}
+
+#d15{grid-area: d15;} #d16{ grid-area: d16;} #d17{grid-area: d17;} #d18{grid-area: d18;}
+#d19{grid-area: d19;} #d20{  grid-area: d20;} #d21{grid-area: d21;}
+
+.butClass{
+ border-block: border-size;    
+}
+
+#divbuts{
+    display: flex;
+    flex-direction: row;
+    border: 2px solid black;
+    background-color:rgba(255, 248, 220, 7.0);
+    justify-content: space-evenly;
+    height:40px;
+    width: 100%;
+    border-top: 0px;
+}
+
+.but{
+    
+    margin-top: 6px;
+    background-color:darkblue;  
+    border: 1px solid rgba(255, 248, 220, 7.0);
+    border-radius: 10% / 40%;
+    font-weight: normal;
+    width: 110%;
+    height: 30px;
+    color: whitesmoke;
+}
+.but:hover{
+    background-color: whitesmoke;  
+    color: darkblue;
+    border: 2px solid darkblue;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#divlastbuts{
+display: flex;
+flex-direction: row;
+background-color: white;
+justify-content: space-evenly;
+align-items: center;
+height: 70px;
+width: 100%;
+padding-top: 20px;
+padding-bottom: 15px;
+border: 2px solid black;
+border-top: 0px solid black;
+
+
+}
+
+#but5, #but6{
+    background-color: gray;
+    color: white;
+    white-space: pre;
+    width: 150px;
+    height: 40px;
+    font-size: 20px;    
+}
+
+    #but5:hover, #but6:hover{
+    background-color: white;
+    color: gray;
+    border: 2px solid gray;
+    cursor: pointer;
+}
+
+input[type="checkbox"]{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    margin-left:8px;
+  }
+/*&&&&&&&&&&&& END gridR21 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/

@@ -1,0 +1,38 @@
+
+ .maincontentgrid{
+    box-sizing: border-box;
+    grid-area: seven;
+    display: grid;    
+    grid-template-columns: (33% 33% 33%);
+    grid-template-rows:  (2x 1fr);     /*(50% 50%);*/
+    grid-template-areas: 
+
+    "r11 r12 r13" 
+    "r21 r21 r21";
+    gap: 10px;  
+    background-color: rgba(255, 248, 220, 7.0);
+    color: pink;
+    margin-left:5px;
+    margin-top:1px;
+    height: 99%;
+    text-align: left;
+    font-size: 25px;
+    }
+  
+    #row11{
+     /* display: flex;
+      flex-direction: column;    */
+      border: 2px solid black;
+      height: 95%;    
+      grid-area: r11;
+    }
+    #br11{
+      background-color: darkblue;
+      white-space: pre;
+      color: white;
+      margin-top: 15px;
+      margin-bottom: 2px;
+      font-size: 25px;
+      padding-bottom: 0px;
+      text-align: center;
+    }
